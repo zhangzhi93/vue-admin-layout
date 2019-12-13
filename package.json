@@ -1,0 +1,45 @@
+{
+  "name": "vue-element-layout",
+  "description": "基于elementui快速搭建中台前端layout",
+  "version": "0.0.1-beta.1",
+  "private": true,
+  "main": "lib/vue-element-ui.common.js",
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name vue-admin-layout --dest lib ./packages/index.js"
+  },
+  "keywords": [
+    "vue",
+    "element-ui",
+    "layout"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhangzhi93/vue-calendar-panel.git"
+  },
+  "dependencies": {
+    "core-js": "^3.4.8",
+    "element-ui": "^2.13.0",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
+    "@vue/cli-plugin-router": "^4.0.5",
+    "@vue/cli-plugin-vuex": "^4.0.5",
+    "@vue/cli-service": "^4.0.5",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^6.6.0",
+    "eslint-plugin-vue": "^6.0.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
