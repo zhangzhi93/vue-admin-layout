@@ -1,13 +1,27 @@
 <template>
   <el-container>
-    <Slider :siderWidth="siderWidth" :data="menuData" :layout="layout" :logo="logo" :title="title"
-      @onMenuHeaderClick="onMenuHeaderClick" :collapse="expand" />
+    <Slider :data="menuData" :layout="layout" :logo="logo" :title="title"
+      @onMenuHeaderClick="onMenuHeaderClick" :collapse="expand" :default-active="defaultActive"
+      :default-openeds="defaultOpeneds" :unique-opened="uniqueOpened">
+      <slot name="menuHeader" slot="menuHeader"></slot>
+      <slot name="asideExtra" slot="asideExtra"></slot>
+    </Slider>
     <el-container class="container">
-      <slot name="header">
-        <Header :layout="layout" @trigger="toggle" :isCollapse="isCollapse" />
-      </slot>
-      <el-main class="main">
+      <Header :layout="layout" @trigger="toggle" :collapse="collapse" :isCollapse="isCollapse">
+        <slot name="header" slot="header"></slot>
+        <slot name="collapsedButton" slot="collapsedButton"></slot>
+        <slot name="rightContent" slot="rightContent"></slot>
+        <slot name="navTabs" slot="navTabs"></slot>
+      </Header>
+      <el-main :class="['main',$slots.navTabs?'has-tabs':'']">
         <slot></slot>
+        <div class="footer" v-if="showFooter">
+          <slot name="footer">
+            <p>Vue-Element-Layout</p>
+            <a href="https://github.com/zhangzhi93"
+              target="_blank">https://github.com/zhangzhi93</a>
+          </slot>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -37,16 +51,30 @@ export default {
       type: String,
       default: setting.title,
     },
-    siderWidth: {
-      type: String,
-      default: setting.siderWidth,
-    },
     isCollapse: {
       type: Boolean,
       default: setting.isCollapse,
     },
+    defaultActive: {
+      type: String
+    },
+    defaultOpeneds: {
+      type: Array
+    },
+    uniqueOpened: {
+      type: Boolean,
+      default: setting.uniqueOpened,
+    },
+    collapse: {
+      type: Boolean,
+      default: setting.collapse,
+    },
+    showFooter: {
+      type: Boolean,
+      default: setting.showFooter,
+    }
   },
-  data () {
+  data() {
     return {
       expand: false,
     };
@@ -55,11 +83,22 @@ export default {
     Header,
     Slider,
   },
+  watch: {
+    collapse: {
+      handler(val) {
+        this.expand = val;
+      },
+      immediate: true
+    },
+    expand(val) {
+      this.$emit('update:collapse', val);
+    }
+  },
   methods: {
-    onMenuHeaderClick () {
+    onMenuHeaderClick() {
       this.$emit('onMenuHeaderClick');
     },
-    toggle (bol) {
+    toggle(bol) {
       this.expand = bol;
     },
   },
@@ -78,8 +117,19 @@ body {
 </style>
 <style lang="less" scoped>
 .main {
-  margin-top: 64px;
   max-height: calc(~"100vh - 64px");
   overflow-y: auto;
+  padding: 0;
+  &.has-tabs {
+    max-height: calc(~"100vh - 99px");
+  }
+}
+.container {
+  flex-direction: column;
+}
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  color: rgba(0, 0, 0, 0.45);
 }
 </style>

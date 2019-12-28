@@ -1,7 +1,7 @@
 <template>
-  <el-menu-item :index="item.path">
-    <i :class="item.meta.icon" v-if="item.meta.icon"></i>
-    <span>{{item.meta.title}}</span>
+  <el-menu-item :index="item.index" :route="{path:`/${parentPath}`}">
+    <i :class="item.icon" v-if="item.icon"></i>
+    <span>{{item.title}}</span>
   </el-menu-item>
 </template>
 
@@ -13,6 +13,9 @@ export default {
       type: Object,
       required: true,
     },
+    parentPath: {
+      type: String,
+    }
   },
 };
 </script>

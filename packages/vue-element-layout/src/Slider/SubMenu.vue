@@ -1,16 +1,13 @@
 <template>
-  <el-submenu :index="item.path">
+  <el-submenu :index="item.index">
     <template slot="title">
-      <i :class="item.meta.icon" v-if="item.meta.icon"></i>
-      <span slot="title">{{item.meta.title}}</span>
+      <i :class="item.icon" v-if="item.icon"></i>
+      <span slot="title">{{item.title}}</span>
     </template>
 
     <template v-for="child in item.children">
-      <sub-menu v-if="child.children && child.children.length !== 0" :item="child" :key="child.name" />
-      <menu-item v-else :key="child.name" :index="child.path" :item="child">
-        <i class="el-icon-location"></i>
-        {{child.meta.title}}
-      </menu-item>
+      <sub-menu v-if="child.children && child.children.length !== 0" :key="child.index" :item="child" :parent-path="path(child.index)"/>
+      <menu-item v-else :key="child.index" :item="child" :parent-path="path(child.index)" />
     </template>
   </el-submenu>
 </template>
@@ -25,17 +22,17 @@ export default {
       type: Object,
       required: true,
     },
+    parentPath: {
+      type: String,
+    }
   },
   components: {
     MenuItem,
   },
-  watch: {
-    item (val) {
-      console.log(val);
-    },
-  },
+  methods: {
+    path (index) {
+      return `${this.parentPath}/${index}`;
+    }
+  }
 };
 </script>
-
-<style lang="less">
-</style>

@@ -3,15 +3,22 @@
     <slot name="menuHeader">
       <div class="logo" @click="onMenuHeaderClick">
         <img :src="logo" :alt="title">
-        <h1 :class="{'collapsed':collapse}">{{title}}</h1>
+        <transition name="collapse">
+          <h1 v-if="!collapse">{{title}}</h1>
+        </transition>
       </div>
     </slot>
-    <el-menu :collapse="collapse" :unique-opened="true" router class="slider-menu">
-      <template v-for="menu in data">
-        <sub-menu v-if="menu.children&&menu.children.length!==0" :key="menu.name" :item="menu" />
-        <menu-item v-else :key="menu.name" :item="menu" />
-      </template>
-    </el-menu>
+    <div class="slider-menu">
+      <el-menu :collapse="collapse" :unique-opened="uniqueOpened" :default-active="defaultActive"
+        :default-openeds="defaultOpeneds" router>
+        <template v-for="menu in data">
+          <sub-menu v-if="menu.children&&menu.children.length!==0" :key="menu.index" :item="menu"
+            :parent-path="menu.index" />
+          <menu-item v-else :key="menu.index" :item="menu" :parent-path="menu.index" />
+        </template>
+      </el-menu>
+    </div>
+    <slot name="asideExtra"></slot>
   </el-aside>
 </template>
 
@@ -21,7 +28,7 @@ import MenuItem from './MenuItem.vue';
 
 export default {
   name: 'Slider',
-  props: ['data', 'layout', 'logo', 'title', 'siderWidth', 'collapse'],
+  props: ['data', 'layout', 'logo', 'title', 'collapse', 'defaultActive', 'defaultOpeneds', 'uniqueOpened'],
   data () {
     return {};
   },
@@ -44,10 +51,10 @@ export default {
   background-color: #fff;
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   height: 100vh;
+  position: relative;
   .logo {
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s;
     position: relative;
     z-index: 1;
     width: 100%;
@@ -55,6 +62,7 @@ export default {
     text-align: center;
     line-height: 64px;
     background-color: #367eff;
+    border-bottom-right-radius: 3px;
     box-shadow: 0 2px 6px rgba(0, 21, 41, 0.35);
     img {
       display: inline-block;
@@ -68,22 +76,7 @@ export default {
       font-weight: 600;
       font-size: 20px;
       vertical-align: middle;
-      // width: calc (~"100% - 32px");
-      width: 180px;
-      height: 100%;
-      overflow: hidden;
-      // background-color: #000;
-      transition: all ease 0.2s;
     }
-    h1.collapsed {
-      width: 0;
-      height: 0;
-      visibility: hidden;
-    }
-  }
-  > .el-menu {
-    padding-top: 5px;
-    border-right: none;
   }
   .el-menu-item,
   .el-submenu__title {
@@ -92,7 +85,27 @@ export default {
     user-select: none;
   }
 }
-.slider-menu:not(.el-menu--collapse) {
-  width: 256px;
+.slider-menu {
+  max-height: calc(~"100vh - 64px");
+  overflow-y: auto;
+  overflow-y: overlay;
+  .el-menu:not(.el-menu--collapse) {
+    width: 256px;
+  }
+  .el-menu {
+    padding: 10px 0;
+    border-right: none;
+  }
+}
+
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: all cubic-bezier(.55,0,.1,1) 0.3s;
+}
+.collapse-enter,
+.collapse-leave-to {
+  transform: translateX(-60px);
+  //transform: scale(0.6);
+  opacity: 0;
 }
 </style>
