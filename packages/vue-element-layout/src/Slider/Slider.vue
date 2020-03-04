@@ -29,7 +29,7 @@ import MenuItem from './MenuItem.vue';
 export default {
   name: 'Slider',
   props: ['data', 'layout', 'logo', 'title', 'collapse', 'defaultActive', 'defaultOpeneds', 'uniqueOpened'],
-  data () {
+  data() {
     return {};
   },
   components: {
@@ -37,7 +37,7 @@ export default {
     MenuItem,
   },
   methods: {
-    onMenuHeaderClick () {
+    onMenuHeaderClick() {
       this.$emit('onMenuHeaderClick');
     },
   },
@@ -100,12 +100,11 @@ export default {
 
 .collapse-enter-active,
 .collapse-leave-active {
-  transition: all cubic-bezier(.55,0,.1,1) 0.3s;
+  transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.15s;
 }
 .collapse-enter,
 .collapse-leave-to {
-  transform: translateX(-60px);
-  //transform: scale(0.6);
+  transform: translateX(-40px);
   opacity: 0;
 }
 </style>

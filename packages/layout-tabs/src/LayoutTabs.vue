@@ -9,7 +9,7 @@
       <ul>
         <li v-for="item in tabsData" :key="item.name"
           :class="{'active':activeName == item.name,'closable':!item.closable}"
-          @click="onClick(item)">
+          @click="onClick(item)" @contextmenu.prevent="onContextmenu">
           <span>{{item.title}}</span>
           <i class="el-icon-close close-btn" v-if="!item.permanent"
             @click.stop="removeTab(item.name)"></i>
@@ -32,18 +32,21 @@ export default {
       default: 'scroll'
     }
   },
-  data () {
+  data() {
     return {
       activeName: ''
     }
   },
   methods: {
-    onClick (data) {
+    onClick(data) {
       if (this.type === 'flex') this.activeName = data.name;
       this.$emit('tab-click', data.name);
     },
-    removeTab (name) {
+    removeTab(name) {
       this.$emit('tab-remove', name);
+    },
+    onContextmenu(e) {
+      console.log(e);
     }
   }
 }
@@ -96,7 +99,10 @@ export default {
         border-right: 1px solid #e4e7ed;
       }
       &.active {
-        color: #409eff;
+        span {
+          color: #409eff;
+        }
+        box-shadow: inset 2px 2px 8px #f0f0f0;
       }
       &.closable.active {
         .close-btn {
@@ -109,7 +115,9 @@ export default {
         }
       }
       &:hover {
-        color: #409eff;
+        span {
+          color: #409eff;
+        }
       }
       span {
         display: block;

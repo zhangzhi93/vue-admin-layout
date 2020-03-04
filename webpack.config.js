@@ -13,7 +13,7 @@ module.exports = {
     filename: isProduction ? 'index.js' : 'main.js',
     path: isProduction ? path.resolve(process.cwd(), './lib') : path.resolve(process.cwd(), './dist'),
   },
-  devtool: isProduction ? 'cheap-module-source-map' : 'cheap-module-source-map',
+  devtool: isProduction ? '' : 'cheap-module-source-map',
   mode: isProduction ? 'production' : 'development',
   module: {
     rules: [{
@@ -42,20 +42,9 @@ module.exports = {
     }]
   },
   plugins: [
-    // new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new ProgressBarPlugin(),
   ],
-  // resolve: {
-  //   alias: {
-  //     'vue$': 'vue/dist/vue.esm.js'
-  //   },
-  //   extensions: ['.js', '.vue', '.json']
-  // },
-  // externals: {
-  //   'vue': 'Vue',
-  //   'element-ui': 'element',
-  // },
   devServer: {
     contentBase: './lib',
     hot: true,
@@ -74,6 +63,17 @@ if (isProduction) {
     libraryTarget: 'umd',
     umdNamedDefine: true
   });
+  module.exports.plugins.push(new CleanWebpackPlugin());
+  module.exports.resolve = {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
+    extensions: ['.js', '.vue', '.json']
+  },
+    module.exports.externals = {
+      'vue': 'Vue',
+      'element-ui': 'element',
+    }
 } else {
   module.exports.plugins.push(
     new HtmlWebpackPlugin({

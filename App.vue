@@ -3,7 +3,7 @@
     <vue-element-layout :menu-data="data" default-active="one"
       :default-openeds="['dashboard','status']" :unique-opened="true" @onMenuHeaderClick="goHome"
       :collapse.sync="expand">
-      <!-- <layout-tabs slot="navTabs" :tabs-data="tabs" type="flex"></layout-tabs> -->
+      <layout-tabs slot="navTabs" :tabs-data="tabs" type="flex"></layout-tabs>
       <div slot="rightContent" class="avatar">
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
         </el-avatar>
@@ -164,101 +164,101 @@
 <script>
 export default {
   name: 'app',
-  data () {
+  data() {
     return {
       expand: false,
       tabs: [{
-        title: 'Tab 111111111',
+        title: 'Tab 1',
         name: '1',
         closable: 'false'
       }, {
-        title: 'Tab 2111111111111',
+        title: 'Tab 2',
         name: '2',
         url: 'www.baidu.com'
       }, {
-        title: 'Tab 31111111111111',
+        title: 'Tab 3',
         name: '3',
       }, {
-        title: 'Tab 411111111111111',
+        title: 'Tab 4',
         name: '4',
       }, {
         title: 'Tab 5',
         name: '5',
-      }, {
-        title: 'Tab 6',
-        name: '6',
-      }, {
-        title: 'Tab 7',
-        name: '7',
-      }, {
-        title: 'Tab 8',
-        name: '8',
-      }, {
-        title: 'Tab 9',
-        name: '9',
-      }, {
-        title: 'Tab 10',
-        name: '10',
-      }, {
-        title: 'Tab 11',
-        name: '11',
-      }, {
-        title: 'Tab 12',
-        name: '12',
-      }, {
-        title: 'Tab 13',
-        name: '13',
-      }, {
-        title: 'Tab 14',
-        name: '14',
-      }, {
-        title: 'Tab 15',
-        name: '15',
-      }, {
-        title: 'Tab 16',
-        name: '16',
-      }, {
-        title: 'Tab 17',
-        name: '17',
-      }, {
-        title: 'Tab 18',
-        name: '18',
-      }, {
-        title: 'Tab 19',
-        name: '19',
-      }, {
-        title: 'Tab 20',
-        name: '20',
-      }, {
-        title: 'Tab 21',
-        name: '21',
-      }, {
-        title: 'Tab 22',
-        name: '22',
-      }, {
-        title: 'Tab 23',
-        name: '23',
-      }, {
-        title: 'Tab 24',
-        name: '24',
-      }, {
-        title: 'Tab 25',
-        name: '25',
-      }, {
-        title: 'Tab 26',
-        name: '26',
-      }, {
-        title: 'Tab 27',
-        name: '27',
-      }, {
-        title: 'Tab 28',
-        name: '28',
-      }, {
-        title: 'Tab 29',
-        name: '29',
-      }, {
-        title: 'Tab 30',
-        name: '30',
+        // }, {
+        //   title: 'Tab 6',
+        //   name: '6',
+        // }, {
+        //   title: 'Tab 7',
+        //   name: '7',
+        // }, {
+        //   title: 'Tab 8',
+        //   name: '8',
+        // }, {
+        //   title: 'Tab 9',
+        //   name: '9',
+        // }, {
+        //   title: 'Tab 10',
+        //   name: '10',
+        // }, {
+        //   title: 'Tab 11',
+        //   name: '11',
+        // }, {
+        //   title: 'Tab 12',
+        //   name: '12',
+        // }, {
+        //   title: 'Tab 13',
+        //   name: '13',
+        // }, {
+        //   title: 'Tab 14',
+        //   name: '14',
+        // }, {
+        //   title: 'Tab 15',
+        //   name: '15',
+        // }, {
+        //   title: 'Tab 16',
+        //   name: '16',
+        // }, {
+        //   title: 'Tab 17',
+        //   name: '17',
+        // }, {
+        //   title: 'Tab 18',
+        //   name: '18',
+        // }, {
+        //   title: 'Tab 19',
+        //   name: '19',
+        // }, {
+        //   title: 'Tab 20',
+        //   name: '20',
+        // }, {
+        //   title: 'Tab 21',
+        //   name: '21',
+        // }, {
+        //   title: 'Tab 22',
+        //   name: '22',
+        // }, {
+        //   title: 'Tab 23',
+        //   name: '23',
+        // }, {
+        //   title: 'Tab 24',
+        //   name: '24',
+        // }, {
+        //   title: 'Tab 25',
+        //   name: '25',
+        // }, {
+        //   title: 'Tab 26',
+        //   name: '26',
+        // }, {
+        //   title: 'Tab 27',
+        //   name: '27',
+        // }, {
+        //   title: 'Tab 28',
+        //   name: '28',
+        // }, {
+        //   title: 'Tab 29',
+        //   name: '29',
+        // }, {
+        //   title: 'Tab 30',
+        //   name: '30',
       }],
       data: [{
         index: 'dashboard',
@@ -337,12 +337,12 @@ export default {
     };
   },
   watch: {
-    expand (val) {
+    expand(val) {
       console.log(val)
     }
   },
   methods: {
-    goHome () {
+    goHome() {
       window.open('https://www.baidu.com');
     },
   },
