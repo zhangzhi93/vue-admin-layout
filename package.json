@@ -1,11 +1,11 @@
 {
   "name": "vue-element-layout",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "基于elementui快速搭建中台前端的layout",
   "main": "lib/index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot",
-    "build": "webpack"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -23,12 +23,13 @@
   },
   "homepage": "https://github.com/zhangzhi93/vue-admin-layout#readme",
   "devDependencies": {
-    "element-ui": "^2.13.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "css-loader": "^3.4.2",
+    "element-ui": "^2.13.0",
     "file-loader": "^5.1.0",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.11.1",

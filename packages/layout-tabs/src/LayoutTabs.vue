@@ -95,34 +95,11 @@ export default {
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      &:last-child {
-        border-right: 1px solid #e4e7ed;
-      }
-      &.active {
-        span {
-          color: #409eff;
-        }
-        box-shadow: inset 2px 2px 8px #f0f0f0;
-      }
-      &.closable.active {
-        .close-btn {
-          display: block;
-        }
-      }
-      &.closable:hover {
-        .close-btn {
-          display: block;
-        }
-      }
-      &:hover {
-        span {
-          color: #409eff;
-        }
-      }
       span {
         display: block;
         padding-left: 5px;
         overflow: hidden;
+        transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         &::after {
           content: "";
           position: absolute;
@@ -134,10 +111,35 @@ export default {
           background-color: #fff;
         }
       }
+      &:last-child {
+        border-right: 1px solid #e4e7ed;
+      }
+      &:hover {
+        span {
+          color: #409eff;
+        }
+      }
+      &.active {
+        span {
+          color: #409eff;
+        }
+        box-shadow: inset 2px 2px 8px #f0f0f0;
+      }
+      &.closable.active {
+        .close-btn {
+          opacity: 1;
+        }
+      }
+      &.closable:hover {
+        .close-btn {
+          opacity: 1;
+        }
+      }
     }
     .close-btn {
-      display: none;
+      opacity: 0;
       font-size: 12px;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
       width: 14px;
       height: 14px;
       position: absolute;
@@ -145,7 +147,7 @@ export default {
       top: 10.5px;
       cursor: pointer;
       border-radius: 50%;
-      transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
       text-align: center;
       line-height: 14px;
       &:hover {

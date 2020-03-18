@@ -12,9 +12,9 @@
       <el-menu :collapse="collapse" :unique-opened="uniqueOpened" :default-active="defaultActive"
         :default-openeds="defaultOpeneds" router>
         <template v-for="menu in data">
-          <sub-menu v-if="menu.children&&menu.children.length!==0" :key="menu.index" :item="menu"
-            :parent-path="menu.index" />
-          <menu-item v-else :key="menu.index" :item="menu" :parent-path="menu.index" />
+          <sub-menu v-if="menu.children&&menu.children.length!==0" :key="menu.name" :item="menu"
+            :parent-path="menu.name" />
+          <menu-item v-else :key="menu.name" :item="menu" :parent-path="menu.name" />
         </template>
       </el-menu>
     </div>

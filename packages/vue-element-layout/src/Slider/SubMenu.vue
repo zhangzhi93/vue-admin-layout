@@ -1,13 +1,14 @@
 <template>
-  <el-submenu :index="item.index">
+  <el-submenu :index="item.name">
     <template slot="title">
       <i :class="item.icon" v-if="item.icon"></i>
       <span slot="title">{{item.title}}</span>
     </template>
 
     <template v-for="child in item.children">
-      <sub-menu v-if="child.children && child.children.length !== 0" :key="child.index" :item="child" :parent-path="path(child.index)"/>
-      <menu-item v-else :key="child.index" :item="child" :parent-path="path(child.index)" />
+      <sub-menu v-if="child.children && child.children.length !== 0" :key="child.name" :item="child"
+        :parent-path="path(child.name)" />
+      <menu-item v-else :key="child.name" :item="child" :parent-path="path(child.name)" />
     </template>
   </el-submenu>
 </template>
@@ -30,8 +31,8 @@ export default {
     MenuItem,
   },
   methods: {
-    path (index) {
-      return `${this.parentPath}/${index}`;
+    path(name) {
+      return `${this.parentPath}/${name}`;
     }
   }
 };

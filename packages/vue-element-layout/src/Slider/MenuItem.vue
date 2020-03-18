@@ -1,5 +1,5 @@
 <template>
-  <el-menu-item :index="item.index" :route="{path:`/${parentPath}`}">
+  <el-menu-item :index="item.name" :route="{path:`/${parentPath}`}">
     <i :class="item.icon" v-if="item.icon"></i>
     <span>{{item.title}}</span>
   </el-menu-item>

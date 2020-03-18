@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var VueLoaderPlugin = require('vue-loader/lib/plugin');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const isProduction = false;
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: isProduction ? './src/index.js' : './main.js',

@@ -49,25 +49,25 @@ Vue.use(VueElementLayout);
 
 ```json
 [{
-  "index": "level1",
+  "name": "level1",
   "title": "一级菜单",
   "icon": "el-icon-eleme",
   "children": [{
-    "index": "level2-0",
+    "name": "level2-0",
     "title": "二级菜单",
     "icon": "el-icon-eleme",
     "children": [{
-      "index": "level3",
+      "name": "level3",
       "title": "三级菜单",
       "icon": "el-icon-eleme",
     }]
   },{
-    "index": "level2-1",
+    "name": "level2-1",
     "title": "二级菜单",
     "icon": "el-icon-eleme",
   }],
 },{
-  "index": "level1-1",
+  "name": "level1-1",
   "title": "一级菜单",
   "icon": "el-icon-eleme",
 }]

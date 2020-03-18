@@ -261,76 +261,76 @@ export default {
         //   name: '30',
       }],
       data: [{
-        index: 'dashboard',
+        name: 'dashboard',
         title: '状态概览',
         icon: 'el-icon-eleme',
         children: [{
-          index: 'status',
+          name: 'status',
           title: '状态概览',
           icon: 'el-icon-user',
           children: [{
-            index: 'one',
+            name: 'one',
             title: '状态概览',
             icon: 'el-icon-menu',
           }, {
-            index: 'two',
+            name: 'two',
             title: '更新日志',
             icon: 'el-icon-menu',
           }],
         }, {
-          index: 'update',
+          name: 'update',
           title: '更新日志',
           icon: 'el-icon-menu',
         }],
       }, {
-        index: 'wechat',
+        name: 'wechat',
         title: '微信配置',
         icon: 'el-icon-ice-cream',
         children: [{
-          index: 'menu',
+          name: 'menu',
           title: '菜单管理',
           icon: 'el-icon-menu',
         }, {
-          index: 'reply',
+          name: 'reply',
           title: '关键词回复',
           icon: 'el-icon-menu',
         }],
       }, {
-        index: 'plugin',
+        name: 'plugin',
         title: '插件测试',
         icon: 'el-icon-sugar',
         children: [{
-          index: 'venn',
+          name: 'venn',
           title: '韦恩图',
           icon: 'el-icon-menu',
         }, {
-          index: 'tree-select',
+          name: 'tree-select',
           title: '树选择',
           icon: 'el-icon-menu',
         }, {
-          index: 'calendar',
+          name: 'calendar',
           title: '日历',
           icon: 'el-icon-menu',
         }],
       }, {
-        index: 'function',
+        name: 'function',
         title: '自定义功能',
         icon: 'el-icon-star-off',
         children: [{
-          index: 'diy-tree-select',
+          name: 'diy-tree-select',
           title: '自定义树选择',
           icon: 'el-icon-menu',
         }, {
-          index: 'moveable',
+          name: 'moveable',
           title: '拖动布局',
           icon: 'el-icon-menu',
         }, {
-          index: 'fullscreen',
+          name: 'fullscreen1',
           title: '自定义全屏',
           icon: 'el-icon-menu',
         }],
       }, {
-        index: 'fullscreen',
+        name: 'fullscreen',
         title: '自定义全屏',
         icon: 'el-icon-picture-outline-round',
       }],
