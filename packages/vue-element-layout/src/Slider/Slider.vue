@@ -88,7 +88,6 @@ export default {
 .slider-menu {
   max-height: calc(~"100vh - 64px");
   overflow-y: auto;
-  overflow-y: overlay;
   .el-menu:not(.el-menu--collapse) {
     width: 256px;
   }
