@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    <el-header height="64px">
+    <el-header height="64px"
+      :style="$slots.navTabs?'border-bottom: 1px solid #efefef;':'box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);'">
       <div class="trigger" @click="toggle" v-if="isCollapse">
         <slot name="collapsedButton">
           <i class="fold" v-if="!trigger">
@@ -68,11 +69,6 @@ export default {
     position: relative;
     z-index: 2;
     padding: 0;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  }
-  .nav-tabs{
-    height: 34px;
-    overflow: hidden;
   }
   .trigger {
     display: inline-block;

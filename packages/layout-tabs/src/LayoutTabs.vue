@@ -58,6 +58,7 @@ export default {
   height: 35px;
   z-index: 2;
   overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   /deep/.el-tabs__nav {
     height: 100%;
     border-top: none;
