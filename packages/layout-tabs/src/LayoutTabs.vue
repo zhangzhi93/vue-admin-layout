@@ -100,6 +100,7 @@ export default {
         display: block;
         padding-left: 5px;
         overflow: hidden;
+        font-size: 14px;
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         &::after {
           content: "";

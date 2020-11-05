@@ -1,6 +1,6 @@
 {
   "name": "vue-element-layout",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "基于elementui快速搭建中台前端的layout",
   "main": "lib/index.js",
   "scripts": {
