@@ -1,18 +1,18 @@
 <template>
-  <div class="layout-tabs">
-    <el-tabs v-model="activeName" type="card" @tab-remove="removeTab" @tab-click="onClick"
-      v-if="type==='scroll'">
+  <div class="layout-tabs" v-if="type==='scroll'||type==='flex'">
+    <el-tabs :value="activeName" type="card" @tab-click="onClick" @tab-remove="removeTab"
+      @contextmenu.prevent.native="onTabsContextmenu" v-if="type==='scroll'">
       <el-tab-pane v-for="item in tabsData" :key="item.name" :label="item.title" :name="item.name"
-        :closable="!item.closable" />
+        :closable="!item.permanent" />
     </el-tabs>
-    <div class="flex-tabs">
+    <div class="flex-tabs" v-else-if="type==='flex'">
       <ul>
         <li v-for="item in tabsData" :key="item.name"
           :class="{'active':activeName == item.name,'closable':!item.closable}"
-          @click="onClick(item)" @contextmenu.prevent="onContextmenu">
+          @click="onClick(item)" @contextmenu.prevent="(e)=>onContextmenu(e,item)">
           <span>{{item.title}}</span>
           <i class="el-icon-close close-btn" v-if="!item.permanent"
-            @click.stop="removeTab(item.name)"></i>
+            @click.stop="removeTab(item)"></i>
         </li>
       </ul>
     </div>
@@ -27,26 +27,28 @@ export default {
       type: Array,
       default: () => []
     },
+    activeName: {
+      type: String,
+      default: ''
+    },
     type: {
       type: String,
       default: 'scroll'
     }
   },
-  data() {
-    return {
-      activeName: ''
-    }
-  },
   methods: {
     onClick(data) {
-      if (this.type === 'flex') this.activeName = data.name;
-      this.$emit('tab-click', data.name);
+      this.$emit('tab-click', data);
     },
-    removeTab(name) {
-      this.$emit('tab-remove', name);
+    removeTab(data) {
+      this.$emit('tab-remove', data);
     },
-    onContextmenu(e) {
-      console.log(e);
+    onTabsContextmenu(e) {
+      const data = this.tabsData.find(item => item.name === e.target.id.split('-')[1]);
+      this.$emit('contextmenu', e, data);
+    },
+    onContextmenu(e, data) {
+      this.$emit('contextmenu', e, data);
     }
   }
 }
@@ -55,7 +57,7 @@ export default {
 <style lang="less" scoped>
 .layout-tabs {
   width: 100%;
-  height: 35px;
+  height: 31px;
   z-index: 2;
   overflow: hidden;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
@@ -64,20 +66,30 @@ export default {
     border-top: none;
   }
   /deep/.el-tabs__item {
-    height: 35px;
-    line-height: 35px;
+    height: 31px;
+    line-height: 31px;
   }
   /deep/.el-tabs__nav-prev {
-    line-height: 35px;
+    line-height: 31px;
     padding-left: 3px;
   }
   /deep/.el-tabs__nav-next {
-    line-height: 35px;
+    line-height: 31px;
     padding-right: 3px;
+  }
+  /deep/.el-tabs__item {
+    font-size: 13px;
+    font-weight: normal;
+  }
+  /deep/.el-tabs__item.is-closable .el-icon-close {
+    top: -2px;
+  }
+  /deep/.el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
+    border-bottom: none;
   }
 }
 .flex-tabs {
-  height: 34px;
+  height: 30px;
   border-bottom: 1px solid #e4e7ed;
   ul {
     display: flex;
@@ -91,8 +103,8 @@ export default {
       border-bottom: 1px solid #e4e7ed;
       border-left: 1px solid #e4e7ed;
       transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-      height: 34px;
-      line-height: 34px;
+      height: 30px;
+      line-height: 30px;
       position: relative;
       overflow: hidden;
       cursor: pointer;
@@ -100,7 +112,7 @@ export default {
         display: block;
         padding-left: 5px;
         overflow: hidden;
-        font-size: 14px;
+        font-size: 13px;
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         &::after {
           content: "";
@@ -108,7 +120,7 @@ export default {
           right: 0;
           top: 0;
           width: 22px;
-          height: 34px;
+          height: 30px;
           box-shadow: 0 0 6px 5px #fff;
           background-color: #fff;
         }
@@ -146,7 +158,7 @@ export default {
       height: 14px;
       position: absolute;
       right: 5px;
-      top: 10.5px;
+      top: 8.5px;
       cursor: pointer;
       border-radius: 50%;
 

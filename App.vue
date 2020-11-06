@@ -3,7 +3,8 @@
     <vue-element-layout :menu-data="data" default-active="one"
       :default-openeds="['dashboard','status']" :unique-opened="true" @onMenuHeaderClick="goHome"
       :collapse.sync="expand">
-      <layout-tabs slot="navTabs" :tabs-data="tabs" type="flex"></layout-tabs>
+      <layout-tabs slot="navTabs" :tabs-data="tabs" :active-name="active" @tab-click="onTabClick"
+        @contextmenu="onContextmenu" type="flex"></layout-tabs>
       <div slot="rightContent" class="avatar">
         <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
         </el-avatar>
@@ -167,23 +168,24 @@ export default {
   data() {
     return {
       expand: false,
+      active: '',
       tabs: [{
         title: 'Tab 1',
-        name: '1',
+        name: 'a',
         closable: 'false'
       }, {
         title: 'Tab 2',
-        name: '2',
+        name: 'b',
         url: 'www.baidu.com'
       }, {
         title: 'Tab 3',
-        name: '3',
+        name: 'c',
       }, {
         title: 'Tab 4',
-        name: '4',
+        name: 'd',
       }, {
         title: 'Tab 5',
-        name: '5',
+        name: 'e',
         // }, {
         //   title: 'Tab 6',
         //   name: '6',
@@ -345,6 +347,12 @@ export default {
     goHome() {
       window.open('https://www.baidu.com');
     },
+    onTabClick(data) {
+      this.active = data.name;
+    },
+    onContextmenu(e, data) {
+      console.log(e, data);
+    }
   },
 };
 </script>

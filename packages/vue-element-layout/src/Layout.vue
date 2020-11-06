@@ -121,7 +121,7 @@ body {
   overflow-y: auto;
   padding: 0;
   &.has-tabs {
-    max-height: calc(~"100vh - 99px");
+    max-height: calc(~"100vh - 95px");
   }
 }
 .container {
